@@ -5,3 +5,7 @@ I documented the AI assistance and my testing process with screenshots.
 The Login-button didn't work so I had to use ChatGPT to guide me in locating and solving the issue. 
 I documented the AI assistance with screenshots.
 
+When I first connected the API key, I received a localStorgae is not defined error. 
+ChatGPT helped me identify the spelling mistake. I corrected it, the error disappeared, and I confirmed that the API key was stored. 
+Displaying posts is still in progress.
+
