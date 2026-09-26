@@ -18,3 +18,24 @@ export async function getPosts(accessToken, apiKey) {
 
     return result.data;
 }
+
+/** Collects and displays one post */
+
+export async function getPost(postId, accessToken, apiKey) {
+    const response = await fetch(`${API_URL}/social/posts/${encodeURIComponent(postId)}?_author=true`, 
+    {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "X-Noroff-API-Key": apiKey,
+        },
+    },
+);
+
+const result = await response.json();
+
+if (!response.ok) {
+    throw new Error(result.errors?.[0]?.message || "Failed to load post");
+}
+
+return result.data;
+}
