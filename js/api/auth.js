@@ -34,3 +34,22 @@ export async function loginUser(credentials) {
     }
     return result.data;
 }
+
+/**API-key */
+
+export async function createApiKey(accessToken) {
+    const response = await fetch(`${API_URL}/auth/create-api-key`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.errors?.[0]?.message || "API key creation failed");
+    }
+
+    return result.data.key;
+}

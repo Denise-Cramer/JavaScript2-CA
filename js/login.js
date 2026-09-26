@@ -1,4 +1,4 @@
-import { loginUser } from "./api/auth.js";
+import { createApiKey, loginUser } from "./api/auth.js";
 
 const form =document.querySelector("#login-form");
 const message = document.querySelector("#login-message");
@@ -16,6 +16,12 @@ async function handleLogin(event) {
 
     try {
         const user = await loginUser({ email, password });
+        let apiKey = localStorage.getItem("apiKey");
+
+        if(!apiKey) {
+            apiKey = await createApiKey(user.accessToken);
+            localStorage.setItem("apiKey", apiKey);
+        }
 
         sessionStorage.setItem("accessToken", user.accessToken);
         sessionStorage.setItem("name", user.name);
