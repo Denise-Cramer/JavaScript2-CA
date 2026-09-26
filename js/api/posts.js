@@ -39,3 +39,26 @@ if (!response.ok) {
 
 return result.data;
 }
+
+/** Creates a new post */
+
+export async function createPost(post, accessToken, apiKey) {
+    const response = await fetch(`${API_URL}/social/posts`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+            "X-Noroff-API-Key": apiKey,
+        },
+        body: JSON.stringify(post),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.errors?.[0]?.message || "Failed to create post", 
+        );
+    }
+
+    return result.data;
+}
