@@ -25,9 +25,10 @@ async function handleLogin(event) {
 
         sessionStorage.setItem("accessToken", user.accessToken);
         sessionStorage.setItem("name", user.name);
+        window.location.href = "./index.html";
 
         form.reset();
-        message.textContent = `Welcome, ${user.name}! You are now logged in.`;
+        
     } catch (error) {
         message.textContent = error.message;
     } finally {
