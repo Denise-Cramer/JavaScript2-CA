@@ -14,11 +14,12 @@ async function handleCreatePost(event) {
         return;
     }
 
-    const title = form.nextElementSibling.title.value.trim();
-    const body = form.nextElementSibling.body.value.trim();
+    const title = form.elements.title.value.trim();
+    const body = form.elements.body.value.trim();
 
     try {
         await createPost({ title, body }, accessToken, apiKey);
+        
         message.textContent = "Post created successfully!";
         form.reset();
     } catch (error) {
