@@ -2,3 +2,6 @@ When the Register button remained disabled, I had to use ChatGPT to help me insp
 After correcting these and several small code errors, I tested the form and it showed an error for an existing profile and successfully created a new account with a different valid student email. 
 I documented the AI assistance and my testing process with screenshots.
 
+The Login-button didn't work so I had to use ChatGPT to guide me in locating and solving the issue. 
+I documented the AI assistance with screenshots.
+
