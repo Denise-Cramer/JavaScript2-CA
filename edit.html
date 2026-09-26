@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width", initial scale=1.0" />
+        <title>YourSpace | Edit Post</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>YourSpace</h1>
+            <nav>
+                <a href="./index.html">Back to feed</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Edit Post</h2>
+
+            <form id="edit-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required />
+
+                <label for="body">Text:</label>
+                <textarea id="body" name="body" rows="6"></textarea>
+
+                <button type="submit">Save changes</button>
+                <p id="edit-message" role="status"></p>
+            </form>
+        </main>
+
+        <script type="module" src="./js/edit.js"></script>
+    </body>
+</html>

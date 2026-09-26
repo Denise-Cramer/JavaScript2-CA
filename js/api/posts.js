@@ -62,3 +62,54 @@ export async function createPost(post, accessToken, apiKey) {
 
     return result.data;
 }
+
+/** Updates an existing post */
+
+export async function updatePost(postId, post, accessToken, apiKey) {
+    const response = await fetch(
+        `${API_URL}/social/posts/${encodeURIComponent(postId)}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": apiKey,
+            },
+            body: JSON.stringify(post),
+        },
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            result.errors?.[0]?.message || "Failed to update post",
+        );
+    }
+
+    return result.data;
+}
+
+
+/** Deletes an existing post */
+
+export async function deletePost(postId, accessToken, apiKey) {
+    const response = await fetch(
+        `${API_URL}/social/posts/${encodeURIComponent(postId)}`,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": apiKey,
+            },
+        },
+    );
+
+    if (!response.ok) {
+        const result = await response.json();
+        throw new Error(
+            result.errors?.[0]?.message || "Could not delete post",
+        );
+    }
+    return true;
+}
