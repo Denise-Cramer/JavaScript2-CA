@@ -9,3 +9,8 @@ When I first connected the API key, I received a localStorgae is not defined err
 ChatGPT helped me identify the spelling mistake. I corrected it, the error disappeared, and I confirmed that the API key was stored. 
 Displaying posts is still in progress.
 
+The profile page remained on “Loading profile...”. The browser console showed that sessionStorage had been misspelled as sessionStorgae. ChatGPT helped me identify my mistake so I could correct the spelling.
+After I correctd the mistake the profiles JavaScript started running correctly and the profile page loaded.
+
+I had accidentally typed a # before "apiKey" on line 11 instead of a quotation mark ". ChatGPT helped me identify the typo, and the error disappeared after I corrected it.
+
