@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+    </head>
+    <body>
+        <main>
+            <h1>LOGIN</h1>
+            <form id="login-form">
+                <div>
+                    <label for="email">Student E-mail:</label>
+                    <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    autocomplete="email"
+                    required />
+                </div>
+
+                <div>
+                    <label for="password">Password:</label>
+                    <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    autocomplete="current-password"
+                    required />
+                </div>
+
+                <button type="submit">Login</button>
+                <p id="login-message" role="status"></p>
+            </form>
+
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+        </main>
+
+        <script type="module" src="./js/login.js"></script>
+    </body>
+</html>
