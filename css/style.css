@@ -104,7 +104,7 @@ button:disabled {
 }
 
 :focus-visible {
-    outline: 3pc solid #8a145e;
+    outline: 3px solid #8a145e;
     outline-offset: 3px;
 }
 

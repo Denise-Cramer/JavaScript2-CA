@@ -14,3 +14,4 @@ After I correctd the mistake the profiles JavaScript started running correctly a
 
 I had accidentally typed a # before "apiKey" on line 11 instead of a quotation mark ". ChatGPT helped me identify the typo, and the error disappeared after I corrected it.
 
+ChatGPT helped me search and identify two mistakes when I created the "search"-function. I had accidentaly written ariaValueMax instead of just value, and I had put $ instead of a & in the API URl. I corrected them and it fixed the search-function! 
