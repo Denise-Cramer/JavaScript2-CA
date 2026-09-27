@@ -113,3 +113,27 @@ export async function deletePost(postId, accessToken, apiKey) {
     }
     return true;
 }
+
+/** Search post by title or text */
+
+export async function searchPosts(query, accessToken, apiKey) {
+    const response = await fetch(
+        `${API_URL}/social/posts/search?q=${encodeURIComponent(query)}&_author=true`,
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "X-Noroff-API-Key": apiKey,
+            },
+        },
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(
+            result.errors?.[0]?.message || "Failed to search post",
+        );
+    }
+
+    return result.data;
+}

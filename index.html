@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport"content="width=device-width, initial scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>YourSpace | Feed</title>
         <link rel="stylesheet" href="./css/style.css" />
     </head>
@@ -21,6 +21,13 @@
 
         <main>
             <h2>Latest Posts</h2>
+            <form id="search-form" role="search">
+                <label for="search-input">Search posts</label>
+                <input type="search" id="search-input" name="query" placeholder="Search by title or text" />
+
+                <button type="submit">Search</button>
+            </form>
+            
             <p id="feed-message" role="status">Loading latest posts...</p>
             <div id="posts"></div>
         </main>

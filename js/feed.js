@@ -1,11 +1,14 @@
-import { getPosts, deletePost } from "./api/posts.js";
+import { getPosts, deletePost, searchPosts } from "./api/posts.js";
 
 const postsContainer = document.querySelector("#posts");
 const message = document.querySelector("#feed-message");
+const searchForm = document.querySelector("#search-form");
+const searchInput = document.querySelector("#search-input");
+const searchButton = searchForm.querySelector('button[type="submit"]');
 
 /** Loads and displays the latest posts */
 
-async function loadFeed() {
+async function loadFeed(query = "") {
     const accessToken = sessionStorage.getItem("accessToken");
     const apiKey = localStorage.getItem("apiKey");
     const currentUser = sessionStorage.getItem("name");
@@ -16,7 +19,11 @@ async function loadFeed() {
     }
 
     try {
-        const posts = await getPosts(accessToken, apiKey);
+        message.textContent = "Loading posts...";
+
+        const posts = query
+            ? await searchPosts(query, accessToken, apiKey)
+            : await getPosts(accessToken, apiKey);
         postsContainer.replaceChildren();
 
         for (const post of posts) {
@@ -93,5 +100,15 @@ async function loadFeed() {
         message.textContent = error.message;
     }
 }
+searchForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    searchButton.disabled = true;
+
+    try {
+        await loadFeed(searchInput.value.trim());
+    } finally {
+        searchButton.disabled = false;
+    }
+});
 
 loadFeed();
