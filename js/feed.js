@@ -30,6 +30,15 @@ async function loadFeed() {
             heading.append(link);
             article.append(heading);
 
+            if (post.media?.url) {
+                const image = document.createElement("img");
+                image.src = post.media.url;
+                image.alt = post.media.alt || post.title;
+                image.loading = "lazy";
+
+                article.append(image);
+            }
+
             if (post.author?.name) {
                 const author = document.createElement("p");
                 const authorLink = document.createElement("a");
