@@ -1,4 +1,4 @@
-import { getProfile } from "./api/profile.js";
+import { getProfile, setFollowStatus } from "./api/profile.js";
 
 const message = document.querySelector("#profile-message");
 const profileNameElement = document.querySelector("#profile-name");
@@ -40,6 +40,53 @@ function setupNavigation() {
     }
 }
 
+function setupFollowButton(profile) {
+    const currentUser = sessionStorage.getItem("name");
+
+    if (!currentUser || profile.name === currentUser) {
+        return;
+    }
+
+    let isFollowing = profile.followers?.some(
+        (follower) => follower.name === currentUser,
+    ) ?? false;
+
+    let followerCount = profile._count?.followers ?? 0;
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = isFollowing ? "Unfollow" : "Follow";
+
+    button.addEventListener("click", async () => {
+        button.disabled = true;
+        message.textContent = "";
+
+        try {
+            await setFollowStatus(
+                profile.name,
+                !isFollowing,
+                accessToken,
+                apiKey,
+            );
+
+            isFollowing = !isFollowing;
+            followerCount += isFollowing ? 1 : -1;
+            button.textContent = isFollowing ? "Unfollow" : "Follow";
+
+            countsElement.textContent =
+                `Posts: ${profile._count?.posts ?? 0} | ` +
+                `Followers: ${followerCount} | ` +
+                `Following: ${profile._count?.following ?? 0}`;
+        } catch (error) {
+            message.textContent = error.message;
+        } finally {
+            button.disabled = false;
+        }
+    });
+
+    countsElement.after(button);
+}
+
 async function loadProfile() {
     if (!accessToken || !apiKey) {
         message.textContent = "You must be logged in to view a profile";
@@ -62,6 +109,8 @@ async function loadProfile() {
         } | Followers: ${profile._count?.followers || 0} | Following: ${
             profile._count?.following || 0 
         }`;
+
+        setupFollowButton(profile);
 
         for (const post of profile.posts || []) {
             const article = document.createElement("article");

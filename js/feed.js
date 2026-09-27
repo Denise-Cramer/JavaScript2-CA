@@ -32,7 +32,14 @@ async function loadFeed() {
 
             if (post.author?.name) {
                 const author = document.createElement("p");
-                author.textContent = `By ${post.author.name}`;
+                const authorLink = document.createElement("a");
+
+                authorLink.href =
+                `./profile.html?name=${encodeURIComponent(post.author.name)}`;
+                authorLink.textContent = post.author.name;
+
+
+                author.append("By ", authorLink);
                 article.append(author);
             }
 
